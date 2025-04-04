@@ -5,11 +5,12 @@ import { useRouter } from 'next/navigation';
 import { CardContent, CardFooter } from './ui/card';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
-import { useTransition } from 'react';
+import { useEffect, useTransition } from 'react';
 import { Button } from './ui/button';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { loginAction, signUpAction } from '@/actions/users';
+import { useSearchParams } from 'next/navigation';
 
 type Props = {
   type: 'login' | 'signUp';
@@ -19,6 +20,23 @@ function AuthForm({ type }: Props) {
   const isLoginForm = type === 'login';
 
   const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const verify = searchParams.get('verify');
+
+  useEffect(() => {
+    if (verify) {
+      setTimeout(() => {
+        toast("You're verified!👋", {
+          description: 'Please log in to continue',
+          action: {
+            label: 'dismiss',
+            onClick: () => {},
+          },
+        });
+      }, 1000);
+    }
+  }, [verify]);
 
   const [isPending, startTransition] = useTransition();
 
@@ -44,7 +62,7 @@ function AuthForm({ type }: Props) {
         toast('Welcome! 🎉', {
           description: 'Please verify your email to log in 🙏',
         });
-        router.push('/');
+        router.push('/login');
       }
 
       if (!errorMessage && isLoginForm) {
