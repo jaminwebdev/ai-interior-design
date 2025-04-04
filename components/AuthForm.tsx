@@ -1,6 +1,5 @@
 'use client';
 
-import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { CardContent, CardFooter } from './ui/card';
 import { Label } from './ui/label';
@@ -11,6 +10,7 @@ import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { loginAction, signUpAction } from '@/actions/users';
 import { useSearchParams } from 'next/navigation';
+import { toasts } from '@/lib/toasts';
 
 type Props = {
   type: 'login' | 'signUp';
@@ -22,21 +22,11 @@ function AuthForm({ type }: Props) {
   const router = useRouter();
 
   const searchParams = useSearchParams();
-  const verify = searchParams.get('verify');
+  const verified = searchParams.get('verify');
 
   useEffect(() => {
-    if (verify) {
-      setTimeout(() => {
-        toast("You're verified!👋", {
-          description: 'Please log in to continue',
-          action: {
-            label: 'dismiss',
-            onClick: () => {},
-          },
-        });
-      }, 1000);
-    }
-  }, [verify]);
+    if (verified) setTimeout(() => toasts.verified(), 1000);
+  }, [verified]);
 
   const [isPending, startTransition] = useTransition();
 
@@ -52,23 +42,12 @@ function AuthForm({ type }: Props) {
         errorMessage = (await signUpAction(email, password)).errorMessage;
       }
 
-      if (errorMessage) {
-        toast('Error', {
-          description: errorMessage,
-        });
-      }
+      if (errorMessage) toasts.authError(errorMessage);
 
-      if (!errorMessage && !isLoginForm) {
-        toast('Welcome! 🎉', {
-          description: 'Please verify your email to log in 🙏',
-        });
-        router.push('/login');
-      }
+      if (!errorMessage && !isLoginForm) toasts.verify();
 
       if (!errorMessage && isLoginForm) {
-        toast('Logged in', {
-          description: 'You have been successfully logged in',
-        });
+        toasts.loggedIn();
         router.push('/');
       }
     });
