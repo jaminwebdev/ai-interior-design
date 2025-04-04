@@ -46,8 +46,8 @@ export const signUpAction = async (email: string, password: string) => {
     if (!userId) throw new Error('Error signing up');
 
     const { error: userCreationError } = await supabase
-      .from('ai_interior_design_user')
-      .insert([{ id: userId, email }]);
+      .from('ai_interior_design_users')
+      .insert([{ email }]);
 
     if (userCreationError) throw userCreationError;
 
