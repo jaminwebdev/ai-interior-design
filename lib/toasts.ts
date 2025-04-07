@@ -21,4 +21,8 @@ export const toasts = {
     toast('Logged in', {
       description: 'You have been successfully logged in',
     }),
+  logoutError: () =>
+    toast('Error logging out', {
+      description: 'There was a problem logging out',
+    }),
 };
