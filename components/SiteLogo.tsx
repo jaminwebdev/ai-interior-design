@@ -17,13 +17,16 @@ function SiteLogo() {
           width="137.5"
           height="137.5"
           rx="25"
-          className="fill-secondary"
+          className="fill-foreground"
         />
         <path
           d="M104.938 101.812V36.1875H87.75V21.54L36.1875 30.4301V101.812H22.125V108.062H39.0977L87.75 114.773V42.4375H98.6875V108.062H115.875V101.812H104.938ZM81.5 107.602L42.4375 102.214V35.6949L81.5 28.9609V107.602Z"
-          fill="white"
+          className="fill-secondary"
         />
-        <path d="M69 64.3125H75.25V76.8125H69V64.3125Z" fill="white" />
+        <path
+          d="M69 64.3125H75.25V76.8125H69V64.3125Z"
+          className="fill-secondary"
+        />
       </svg>
 
       <div className="flex flex-col">
