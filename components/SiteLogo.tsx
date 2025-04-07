@@ -2,13 +2,13 @@ import React from 'react';
 
 function SiteLogo() {
   return (
-    <>
+    <div className="flex gap-2 items-center">
       <svg
         width="100%"
         height="100%"
         viewBox="0 0 138 138"
         fill="none"
-        className="max-w-14"
+        className="max-w-12"
         xmlns="http://www.w3.org/2000/svg"
       >
         <rect
@@ -26,11 +26,13 @@ function SiteLogo() {
         <path d="M69 64.3125H75.25V76.8125H69V64.3125Z" fill="white" />
       </svg>
 
-      <div className="flex flex-col leading-2">
-        <span className="text-2xl font-black tracking-[.25rem]">AI</span>
-        Interiors
+      <div className="flex flex-col">
+        <p className="text-2xl font-black tracking-[.05rem] leading-[1.1rem]">
+          AI
+        </p>
+        <p className="leading-[1.1rem]">Interiors</p>
       </div>
-    </>
+    </div>
   );
 }
 
