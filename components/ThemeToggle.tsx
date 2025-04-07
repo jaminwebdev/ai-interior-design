@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { themes } from '@/lib/styles';
 
 export function ThemeToggle() {
   const { setTheme } = useTheme();
@@ -25,22 +26,18 @@ export function ThemeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
+        {themes.map(theme => (
+          <DropdownMenuItem
+            onClick={() => setTheme(theme)}
+            className="cursor-pointer flex gap-2 items-center"
+            key={theme}
+          >
+            {theme.includes('light') ? <Sun /> : <Moon />}
+            {theme}
+          </DropdownMenuItem>
+        ))}
         <DropdownMenuItem
-          onClick={() => setTheme('light')}
-          className="cursor-pointer flex gap-2 items-center"
-        >
-          <Sun />
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setTheme('dark')}
-          className="cursor-pointer flex gap-2 items-center"
-        >
-          <Moon />
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setTheme('system')}
+          onClick={() => setTheme(() => 'system')}
           className="cursor-pointer flex gap-2 items-center"
         >
           <Computer />
