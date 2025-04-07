@@ -3,6 +3,7 @@ import { ThemeToggle } from './ThemeToggle';
 import { shadow } from '@/lib/styles';
 import Link from 'next/link';
 import SiteLogo from './SiteLogo';
+import { UserMenu } from './UserMenu';
 
 function Header() {
   return (
@@ -12,10 +13,13 @@ function Header() {
         boxShadow: shadow,
       }}
     >
-      <Link href="/" className="flex gap-3 items-center">
+      <Link href="/">
         <SiteLogo />
       </Link>
-      <ThemeToggle />
+      <div className="flex gap-4">
+        <ThemeToggle />
+        <UserMenu />
+      </div>
     </header>
   );
 }
