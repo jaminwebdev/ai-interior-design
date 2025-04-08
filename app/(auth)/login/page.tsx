@@ -1,5 +1,6 @@
 import AuthForm from '@/components/AuthForm';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { Suspense } from 'react';
 
 function LoginPage() {
   return (
@@ -8,7 +9,9 @@ function LoginPage() {
         <CardHeader className="mb-4">
           <CardTitle className="text-center text-3xl">Login</CardTitle>
         </CardHeader>
-        <AuthForm type="login" />
+        <Suspense>
+          <AuthForm type="login" />
+        </Suspense>
       </Card>
     </div>
   );
