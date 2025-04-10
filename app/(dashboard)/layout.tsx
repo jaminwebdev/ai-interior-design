@@ -1,14 +1,18 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import { getUserCredits } from '@/supabase/helpers';
+import { createClient } from '@/supabase/server';
 
-export default function AuthLayout({
+export default async function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { credits } = await getUserCredits(createClient);
+
   return (
     <div className="min-h-screen">
-      <Header />
+      <Header credits={credits} />
       {children}
       <Footer />
     </div>
