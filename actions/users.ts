@@ -41,7 +41,7 @@ export const signUpAction = async (email: string, password: string) => {
       password,
       options: {
         data: {
-          actual_url: `${process.env.NEXT_PUBLIC_BASE_URL}}`,
+          actual_url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
         },
       },
     });
@@ -52,7 +52,7 @@ export const signUpAction = async (email: string, password: string) => {
 
     const { error: userCreationError } = await supabase
       .from('ai_interior_design_users')
-      .insert([{ email }]);
+      .insert([{ id: userId, email }]);
 
     if (userCreationError) throw userCreationError;
 
