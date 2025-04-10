@@ -5,6 +5,10 @@ export const toasts = {
     toast('Error', {
       description: errorMessage,
     }),
+  retrieveCreditsError: () =>
+    toast('Error', {
+      description: 'There was a problem retrieving your credits',
+    }),
   verify: () =>
     toast('Welcome! 🎉', {
       description: 'Please verify your email to log in 🙏',
